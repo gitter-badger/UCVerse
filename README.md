@@ -3,7 +3,7 @@ UCVerse
 
 UCverse is an IRC Bot for #UC on GameSurge.
 
-Dependiences
+Dependencies
 =======
 
 * PHP 5.4 or highter installed
