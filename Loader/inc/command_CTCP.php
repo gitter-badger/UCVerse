@@ -5,7 +5,8 @@
 				if($exp['2'] == "join\r\n") {
 					fputs($socket,"JOIN ".$channelname." \r\n");
 				} elseif($exp2['3'] == ":COMMAND") {
-					$formatted = str_replace("COMMAND ", "", $ircmsg2);
+					$formatted = end(explode("COMMAND ", $ircmsg2));
+					$formatted = str_replace("COMMAND ", "", $formatted);
 					$defuse = explode(" ", strtoupper($formatted));
 
 					if($defuse['0'] == "QUIT" || $defuse['0'] == "QUIT\r\n") {
@@ -71,6 +72,7 @@
 					} else {
 						fputs($socket, $formatted."\r\n");
 						fputs($socket, "NOTICE Zexorz2 :".$formatted."\r\n");
+						sleep(1);
 					}
 					echo substr(strtoupper($exp['3']));
 				} elseif($exp2['3'] == ":VERSION\r\n" || $exp2['3'] == ":VERSION\r\n") {
