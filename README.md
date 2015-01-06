@@ -1,8 +1,3 @@
-* * *
-### This is an **Development** branch!!
-* * *
-
-
 UCVerse
 =======
 
