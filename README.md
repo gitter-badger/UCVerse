@@ -1,3 +1,8 @@
+* * *
+### This is an **Development** branch!!
+* * *
+
+
 UCVerse
 =======
 
@@ -15,10 +20,7 @@ Installing
 **Windows**
 * Download from http://windows.php.net/download/ the PHP Version above 5.4
 * Set Up PATH Variable to check PHP Folder in System Variables
-  * **Windows 7 / Windows Vista / Windows 2000 / Windows XP**
-  * Computer -> Properties -> Advanced System Settings -> Advanced -> Environment Variables -> PATH
-  * **Windows 8**
-  * Power User Task Menu -> System -> Advanced System Settings -> Advanced -> Environment Variables -> PATH
+  * Win+Pause -> Advanced System Settings -> Advanced -> Environment Variables -> PATH
 * Go to cmd.exe and type "cd PATH_TO_BOT" and "php -f loader.php"
   
 **Linux**
