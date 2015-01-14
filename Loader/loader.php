@@ -3,84 +3,85 @@ error_reporting('E_ALL');
 
 ob_start();
 ini_set('max_execution_time', 0);
+ini_set('default_socket_timeout', 9999);
 $starttime = time();
 
+$botname = "UCVerse";
 include("./inc/functions.php");
 
-$socket = fsockopen("Portlane.SE.EU.GameSurge.net", "6667", $errno, $errstr, '2') or die($errstr);
-
-$botname = "UCVerse";
-
-fputs($socket,"CAP LS \r\n");
-fputs($socket,"NICK ".$botname." \r\n");
-fputs($socket,"USER UCVerse 0 * :http://ultimateclan.net/ \r\n");
-
-$x = '1';
-
 while(1) {
-	$sock_data = fgets($socket,1024);
-	$exp = explode(":", $sock_data);
-	$exp2 = explode(" ", $sock_data);
-	$message = $exp['1'];
-	$who = $exp['0'];
-	$ver = $exp2['3'];
-	$channelname = trim(preg_replace('/\s\s+/', ' ', $exp2['2']));
+	$socket = fsockopen("Portlane.SE.EU.GameSurge.net", "6667", $errno, $errstr, '2') or die($errstr);
 
-	//NICK CHANGE DETECT//
-	include("./inc/NICK_change.php");
+	fputs($socket,"CAP LS \r\n");
+	fputs($socket,"NICK ".$botname." \r\n");
+	fputs($socket,"USER UCVerse 0 * :http://ultimateclan.net/ \r\n");
 
-	$pong = array();
+	$x = '1';
 
-	//GET NICKS//
-	$split_ident = explode("!", $exp2['0']);
-	$get_nickname = str_replace(":", "", $split_ident['0']);
+	while($sock_data = fgets($socket,1024)) {
+		stream_set_blocking($sock_data, 0);
+		if($sock_data == '') continue;
+		$exp = explode(":", $sock_data);
+		$exp2 = explode(" ", $sock_data);
+		$message = $exp['1'];
+		$who = $exp['0'];
+		$ver = $exp2['3'];
+		$channelname = trim(preg_replace('/\s\s+/', ' ', $exp2['2']));
 
-	if ($who == 'PING ') { 
-		fputs($socket,"PONG $message \r\n"); 
-	}
-		
-	if ($ver == ':VERSION') { 
-		fputs($socket,"PONG $message \r\n"); 
-	}
+		//NICK CHANGE DETECT//
+		include("./inc/NICK_change.php");
 
-	if($x == "21") {
-		fputs($socket,"JOIN #UC \r\n"); 
-		fputs($socket,"JOIN #AbC \r\n");
-		fputs($socket,"PRIVMSG AuthServ@Services.Gamesurge.net :login xxx yyy\r\n"); 
-	}
+		//GET NICKS//
+		$split_ident = explode("!", $exp2['0']);
+		$get_nickname = str_replace(":", "", $split_ident['0']);
 
-	$nickuser = $get_nickname;
-	$ircmsg2 = end(explode($botname." :", $sock_data));
+		if ($who == 'PING ') { 
+			fputs($socket,"PONG $message \r\n"); 
+		}
+			
+		if ($ver == ':VERSION') { 
+			fputs($socket,"PONG $message \r\n"); 
+		}
 
-	foreach (glob("./inc/command_*.php") as $filename) {
-		include $filename;
-	}
+		if($x == "21") {
+			fputs($socket,"JOIN #UC \r\n"); 
+			fputs($socket,"JOIN #AbC \r\n");
+			fputs($socket,"PRIVMSG AuthServ@Services.Gamesurge.net :login UCVerse metonator\r\n"); 
+		}
 
-	$mode = $exp2['1'];
+		$nickuser = $get_nickname;
+		$ircmsg2 = end(explode($botname." :", $sock_data));
 
-	if($mode == "PRIVMSG") {
-			$ircmsg = end(explode("".$channelname." :", $sock_data));
+		foreach (glob("./inc/command_*.php") as $filename) {
+			include $filename;
+		}
 
-			$str = $ircmsg;
+		$mode = $exp2['1'];
 
-			$asd = explode(" ", $str);
-			foreach($asd as $asdasd) {
-				$to = parse_url(trim(preg_replace('/\s\s+/', ' ', $asdasd)));
+		if($mode == "PRIVMSG") {
+				$ircmsg = end(explode("".$channelname." :", $sock_data));
 
-				foreach (glob("./inc/parse_*.php") as $filename) {
-				    include $filename;
+				$str = $ircmsg;
+
+				$asd = explode(" ", $str);
+				foreach($asd as $asdasd) {
+					$to = parse_url(trim(preg_replace('/\s\s+/', ' ', $asdasd)));
+
+					foreach (glob("./inc/parse_*.php") as $filename) {
+					    include $filename;
+					}
 				}
-			}
-	} else {
-		$ircmsg = $exp['2'];
+		} else {
+			$ircmsg = $exp['2'];
+		}
+
+	include("./inc/console.php");
+	include("./inc/reconnect.php");
+
+		ob_flush();
+		flush();
+		$x++;
 	}
-
-include("./inc/console.php");
-include("./inc/reconnect.php");
-
-	ob_flush();
-	flush();
-	$x++;
 }
 
 ob_end_flush();
