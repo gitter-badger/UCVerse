@@ -3,7 +3,8 @@ error_reporting('E_ALL');
 
 ob_start();
 ini_set('max_execution_time', 0);
-ini_set('default_socket_timeout', 9999);
+$timeout = 7*24*60;
+ini_set('default_socket_timeout', $timeout); //one week
 $starttime = time();
 
 $botname = "UCVerse";
