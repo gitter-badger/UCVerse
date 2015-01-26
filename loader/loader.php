@@ -23,6 +23,8 @@ function object_to_array($obj) {
 	return $arr;
 }
 
+echo dirname(dirname(__FILE__))."/";
+
 $settings = object_to_array(json_decode(file_get_contents("./settings.conf")));
 if($settings['loader']['Server'] == NULL || $settings['loader']['Nickname'] == NULL || $settings['loader']['Channel']['Main'] == NULL ) {
 	die("IRCBot is not configured!");
