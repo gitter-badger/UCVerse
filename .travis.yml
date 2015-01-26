@@ -5,8 +5,8 @@ script: php -f ./loader/loader.php
 notifications:
   email: false
   irc:
-    skip_join: true
-    on_success: never
+    skip_join: false
+    on_success: always
     on_failure: always
     channels:
       - "irc.gamesurge.net#UC"
