@@ -1,4 +1,4 @@
-UCVerse
+UCVerse [![Build Status](https://travis-ci.org/Zexorz/UCVerse.svg?branch=development)](https://travis-ci.org/Zexorz/UCVerse)
 =======
 
 UCverse is an IRC Bot for #UC on GameSurge.
