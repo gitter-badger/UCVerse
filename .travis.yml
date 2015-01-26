@@ -6,7 +6,7 @@ notifications:
   email: false
   irc:
     skip_join: false
-    on_success: always
+    on_success: never
     on_failure: always
     channels:
       - "irc.gamesurge.net#UC"
