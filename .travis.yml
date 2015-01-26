@@ -1,0 +1,15 @@
+language: php
+php:
+  - 5.4
+script: php -f ./loader/loader.php
+notifications:
+  email: false
+  irc:
+    skip_join: true
+    on_success: never
+    on_failure: always
+    channels:
+      - "irc.gamesurge.net#UC"
+    template:
+      - "%{repository}#%{build_number} (%{commit} by %{author}): %{message}"
+      - "Build details: %{build_url}"
