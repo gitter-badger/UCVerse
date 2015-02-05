@@ -1,5 +1,5 @@
 <?php	
-if($exp['2'] == "!pong\r\n") {
+	if($exp['2'] == "!pong\r\n") {
 		$ping['start'] = microtime(true);
 		fputs($socket, "PRIVMSG ".$get_nickname." :PING ".$ping['start']."\r\n");
 
@@ -14,7 +14,7 @@ if($exp['2'] == "!pong\r\n") {
 		/*$calculate = $calculate/10;
 		$calculate = round($calculate);*/
 
-		fputs($socket, "PRIVMSG #UC :".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
+		fputs($socket, "PRIVMSG #UC :Ping! ".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
 		unset($ping);
 	}
 ?>
