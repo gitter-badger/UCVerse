@@ -2,7 +2,7 @@
 	
 	if($exp2['1'] == "JOIN" && ($exp2['2'] == "#UC" OR $exp2['2'] == "#UC\r\n")) {
 		if($get_nickname != $botname) {
-			if($get_nickname != "UltimateClan") {
+			if($get_nickname != "UltimateClan" || $get_nickname != "GitHub") {
 				$address = end(explode("@", $exp2['0']));
 				$starting_ip = explode(".", $address);
 
