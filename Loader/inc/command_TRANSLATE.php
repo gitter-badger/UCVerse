@@ -1,15 +1,4 @@
 <?php
-	if($exp2['3'] == ":!ggwp" && $exp2['4'] != NULL) {
-		$tokick = trim(preg_replace('/\s\s+/', '', $exp2['4']));
-
-		if(!in_array($get_nickname, array("LeTotalKiller", "Zexorz"))) {
-			fputs($socket,"KICK ".$channelname." ".$get_nickname." :[SelfKick] Oh yea good game well played bro :P\r\n"); 
-		} elseif($tokick == "Triad") {
-			fputs($socket,"KICK ".$channelname." ".$get_nickname." :NOU XD\r\n"); 
-		} else {
-			fputs($socket,"KICK ".$channelname." ".$tokick." :Oh yea good game well played bro :P\r\n"); 
-		}
-	}
 
 	if($exp2['3'] == ":!translate") {
 		$expplde = explode(":!translate ", $sock_data);
@@ -22,7 +11,6 @@
 			$sendtocb = urlencode($sendtocb);
 			$reply = @file_get_contents("https://translate.google.com/translate_a/single?client=t&sl=".$explode_words['0']."&tl=en&hl=pl&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&ie=UTF-8&oe=UTF-8&otf=2&rom=0&ssel=3&tsel=6&tk=516524|805520&q=".$sendtocb);
 		} else*/if(strlen($explode_words['0']) == "5" AND str_split($explode_words['0'])['2'] == "|") {
-			fputs($socket,"PRIVMSG ".$channelname." :4[{$get_nickname} / Translation Beta]: {$reply}\r\n"); 
 			$sendtocb = substr($sendtocb, 6);
 
 			$explode_targets = explode("|", $explode_words['0']);
