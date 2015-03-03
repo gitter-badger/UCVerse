@@ -15,9 +15,7 @@
 		$calculate = round($calculate);*/
 		
 		if($calculate2['1'] != NULL) {
-			$calculate = $calculate2['0'].".".$calculate2['1'];
-		} else {
-			$calculate = $calculate2;
+			$calculate = $calculate['0'].".".$calculate['1'];
 		}
 
 		fputs($socket, "PRIVMSG ".$channelname." :".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
