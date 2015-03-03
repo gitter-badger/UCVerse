@@ -14,7 +14,7 @@
 		/*$calculate = $calculate/10;
 		$calculate = round($calculate);*/
 
-		fputs($socket, "PRIVMSG #UC :Ping! ".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
+		fputs($socket, "PRIVMSG ".$channelname." :".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
 		unset($ping);
 	}
 ?>
