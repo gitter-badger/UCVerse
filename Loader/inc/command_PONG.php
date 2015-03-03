@@ -10,9 +10,15 @@
 
 		$calculate = $ping['end']-$ping['start'];
 		$calculate = round($calculate, 3);
-		$calculate = end(explode(".", $calculate));
+		$calculate = explode(".", $calculate);
 		/*$calculate = $calculate/10;
 		$calculate = round($calculate);*/
+		
+		if($calculate2['1'] != NULL) {
+			$calculate = $calculate2['0'].".".$calculate2['1'];
+		} else {
+			$calculate = $calculate2;
+		}
 
 		fputs($socket, "PRIVMSG ".$channelname." :".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
 		unset($ping);
