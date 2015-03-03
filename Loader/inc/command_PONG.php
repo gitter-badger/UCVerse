@@ -14,10 +14,11 @@
 		/*$calculate = $calculate/10;
 		$calculate = round($calculate);*/
 		
-		if($calculate2['1'] != NULL) {
+		if((int)$calculate2['0'] != 0) {
 			$calculate = $calculate['0'].".".$calculate['1'];
+		} else {
+			$calculate = $calculate['1'];
 		}
-
 		fputs($socket, "PRIVMSG ".$channelname." :".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
 		unset($ping);
 	}
