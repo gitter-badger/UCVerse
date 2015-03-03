@@ -1,7 +1,7 @@
 <?php	
 	if($exp['2'] == "!pong\r\n") {
 		$ping['start'] = microtime(true);
-		fputs($socket, "PRIVMSG ".$get_nickname." :PING ".$ping['start']."\r\n");
+		fputs($socket, "PRIVMSG ".$get_nickname." :VERSION\r\n");
 
 	}
 
