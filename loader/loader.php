@@ -33,7 +33,7 @@ if($settings['loader']['Port'] == NULL) {
 	$settings['loader']['Port'] == "6667";
 }
 
-include "./functions.php";
+include "./class.core.php";
 
 $socket = fsockopen($settings['loader']['Server'], $settings['loader']['Port'], $errno, $errstr, $settings['loader']['Timeout']) or die($errstr);
 fputs($socket,"CAP LS \r\n");
