@@ -1,10 +1,10 @@
 <?php
 
 $specialtags = array(
-	'BOLD'				=> chr(2),
-	'MASK'				=> chr(22),
-	'ITALIC'			=> chr(29),
-	'UNDERLINE'			=> chr(31),
+	'BOLD'			=> chr(2),
+	'MASK'			=> chr(22),
+	'ITALIC'		=> chr(29),
+	'UNDERLINE'		=> chr(31),
 	'COLOR_WHITE' 		=> chr(3)."00",
 	'COLOR_BLACK'	 	=> chr(3)."01",
 	'COLOR_BLUE' 		=> chr(3)."02",
