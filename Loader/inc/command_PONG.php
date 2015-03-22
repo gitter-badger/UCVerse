@@ -5,33 +5,22 @@
 
 	}
 
-	if($exp2['1'] == "NOTICE" && $exp2['2'] == $botname && $ping['start'] != NULL) {
+	if($exp2['1'] == "NOTICE" && $exp2['2'] == $botname && $ping[$get_nickname]['start'] != NULL) {
 		$ping['end'] = microtime(true);
 
-		$calculate = $ping['end']-$ping['start'];
-		$calculate = round($calculate, 3);
-		$calculate = explode(".", $calculate);
-		/*$calculate = $calculate/10;
-		$calculate = round($calculate);*/
-		
-		if((int)$calculate2['0'] != 0) {
-			if(strlen($calculate2['1']) == "2") {
-				$calculate2['1'] = $calculate2['1']."0";
-			} elseif(strlen($calculate2['1']) == "1") {
-				$calculate2['1'] = $calculate2['1']."00";
-			}
-			
-			$calculate = $calculate2['0'].".".$calculate2['1'];
-		} else {
-			if(strlen($calculate2['1']) == "2") {
-				$calculate2['1'] = $calculate2['1']."0";
-			} elseif(strlen($calculate2['1']) == "1") {
-				$calculate2['1'] = $calculate2['1']."00";
-			}
+		$calculate = $ping['end']-$ping[$get_nickname]['start'];
+		$calculate = number_format($calculate, 3);
+		$calculate2 = explode(".", $calculate);
 
-			$calculate = $calculate2['1'];
+		$pingo[$get_nickname]['latest'] = $calculate;
+		fputs($socket, "PRIVMSG #UC :".$get_nickname."'s Estimated ping: ".$pingo[$get_nickname]['latest']."s\r\n");
+
+		if($pingo[$get_nickname]['lowest'] == NULL) {
+			$pingo[$get_nickname]['lowest'] = $pingo[$get_nickname]['latest'];
+		} elseif($pingo[$get_nickname]['lowest'] > $pingo[$get_nickname]['latest']) {
+			$pingo[$get_nickname]['lowest'] = $pingo[$get_nickname]['latest'];	
 		}
-		fputs($socket, "PRIVMSG ".$channelname." :".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
-		unset($ping);
+
+		$pingo[$get_nickname]['countcalls']++;
 	}
 ?>
