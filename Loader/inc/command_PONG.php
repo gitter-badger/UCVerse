@@ -15,9 +15,21 @@
 		$calculate = round($calculate);*/
 		
 		if((int)$calculate2['0'] != 0) {
-			$calculate = $calculate['0'].".".$calculate['1'];
+			if(strlen($calculate2['1']) == "2") {
+				$calculate2['1'] = $calculate2['1']."0";
+			} elseif(strlen($calculate2['1']) == "1") {
+				$calculate2['1'] = $calculate2['1']."00";
+			}
+			
+			$calculate = $calculate2['0'].".".$calculate2['1'];
 		} else {
-			$calculate = $calculate['1'];
+			if(strlen($calculate2['1']) == "2") {
+				$calculate2['1'] = $calculate2['1']."0";
+			} elseif(strlen($calculate2['1']) == "1") {
+				$calculate2['1'] = $calculate2['1']."00";
+			}
+
+			$calculate = $calculate2['1'];
 		}
 		fputs($socket, "PRIVMSG ".$channelname." :".$get_nickname."'s Estimated ping: ".$calculate."ms \r\n");	
 		unset($ping);
