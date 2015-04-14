@@ -56,6 +56,10 @@ while(1) {
 		foreach (glob("./inc/command_*.php") as $filename) {
 			include $filename;
 		}
+		
+		foreach (glob("./inc/game_*.php") as $filename) {
+			include $filename;
+		}
 
 		$mode = $exp2['1'];
 
