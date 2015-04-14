@@ -2,10 +2,10 @@
 	if($exp['2'] == "!pong\r\n") {
 		$ping['start'] = microtime(true);
 		fputs($socket, "PRIVMSG ".$get_nickname." :VERSION\r\n");
-
+		$pongie = $get_nickname;
 	}
 
-	if($exp2['1'] == "NOTICE" && $exp2['2'] == $botname && $ping[$get_nickname]['start'] != NULL) {
+	if($exp2['1'] == "NOTICE" && $exp2['2'] == $botname && $ping[$get_nickname]['start'] != NULL && $pongie == $get_nickname) {
 		$ping['end'] = microtime(true);
 
 		$calculate = $ping['end']-$ping[$get_nickname]['start'];
@@ -22,5 +22,6 @@
 		}
 
 		$pingo[$get_nickname]['countcalls']++;
+		unset($pongie);
 	}
 ?>
