@@ -6,8 +6,9 @@ UCverse is an IRC Bot for #UC on GameSurge.
 Dependencies
 =======
 
-* PHP 5.4 or higher installed
-* (optional) PHP-CLI
+* PHP 5.3 or higher installed
+* [Linux/MAC Only] PHP-CLI
+* [Linux Only] Screen
 
 Installing
 =======
