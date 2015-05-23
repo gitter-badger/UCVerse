@@ -1,6 +1,8 @@
 UCVerse
 =======
 
+[![Join the chat at https://gitter.im/Zexorz/UCVerse](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Zexorz/UCVerse?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 UCverse is an IRC Bot for #UC on GameSurge.
 
 Dependencies
